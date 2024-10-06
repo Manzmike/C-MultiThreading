@@ -19,6 +19,21 @@ int main() {
     pthread_t thread_id;
 
     // Create a new thread
+    if (pthread_create(&thread_id, NULL, thread_function, NULL) != 0) {
+        perror("Thread creation failed");
+        return 1;
+    }
+
+    // Wait for the thread to finish
+    if (pthread_join(thread_id, NULL) != 0) {
+        perror("Thread join failed");
+        return 1;
+    }
+
+    printf("Main Thread: Thread has finished execution\n");
+    return 0;
+}
+
 ```
 ## Instructions to Run the Code:
 ### Steps 
